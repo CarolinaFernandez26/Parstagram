@@ -14,12 +14,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     var posts = [PFObject]()
     
 
-    @IBOutlet weak var feedTableView: UITableView!
+    @IBOutlet weak var TableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        feedTableView.delegate = self
-        feedTableView.dataSource = self
+        TableView.delegate = self
+        TableView.dataSource = self
         
         // Do any additional setup after loading the view.
     }
@@ -28,14 +28,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         super.viewDidAppear(animated)
         
-        let query = PFQuery(className: "posts")
+        let query = PFQuery(className: "Posts")
         
-        query.includeKey( "author")
+        query.includeKey("author")
         query.limit = 20
         query.findObjectsInBackground { ( posts, error ) in
             if posts != nil {
                 self.posts = posts!
-                self.feedTableView.reloadData()
+                self.TableView.reloadData()
             }
         }
     }
@@ -46,9 +46,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = feedTableView.dequeueReusableCell(withIdentifier: "PostCell" ) as! PostCellTableViewCell
+        let cell = TableView.dequeueReusableCell(withIdentifier: "PostCellTableViewCell" ) as! PostCellTableViewCell
         let post = posts[indexPath.row]
         let user = post ["author"] as! PFUser
+        cell.usernameLabel.text = user.username
+        
         cell.captionLabel.text = post ["caption"] as! String
  
         let imageFile = post["image"] as! PFFileObject

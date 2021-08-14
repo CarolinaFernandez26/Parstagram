@@ -153,7 +153,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="feedTableView" destination="eoF-0e-9QM" id="GFS-yq-7ZM"/>
+                        <outlet property="TableView" destination="eoF-0e-9QM" id="GFS-yq-7ZM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z9H-sw-nax" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
