@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Parse
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -17,8 +18,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        //check if user is logged in
+        if PFUser.current() != nil {
+            let main = UIStoryboard(name: "Main", bundle: nil )
+            
+            //create an instance of the navigation controller
+            let feedNavigationController = main.instantiateViewController(withIdentifier: "FeedNavigationController")
+            
+            //window: contains everything else, only 1 per app, has root view controller
+            window?.rootViewController = feedNavigationController
+            
+        }
     }
-
+    @IBAction func onLogoutButton(_ sender: Any) {
+        //clearse Parse cache
+        PFUser.logOut()
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
+        //one object that exists for each application
+        //have to cast into Appdelegate its the only one that has the Window property
+        let delegate =  UIApplication.shared.delegate as! AppDelegate
+        delegate.window?.rootViewConroller = loginViewController
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

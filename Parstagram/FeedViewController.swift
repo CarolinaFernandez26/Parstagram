@@ -62,7 +62,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-
+    
     /*
     // MARK: - Navigation
 
