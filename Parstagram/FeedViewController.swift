@@ -63,6 +63,26 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //add fake comment
+        let post = posts[indexPath.section]
+        let comment = PFObject(className:   "Comments" )
+        comment["text"] = "This is a random comment"
+        comment["post"] = post
+        comment["author"] = PFUser.current()!
+        
+        //every post will have an array called comments and we will add this comment to the array
+        post.add(comment, forKey:"comments")
+        
+        post.saveInBackground{ (success, error) in
+            if success {
+                print ("Comment saved")
+            } else {
+                print ("Error Saving comment")
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -73,4 +93,19 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     */
 
+    
+        func onLogoutButton(_ sender: Any) {
+        //clearse Parse cache
+        PFUser.logOut()
+        let main = UIStoryboard(name: "Main", bundle: nil)
+        let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
+        //one object that exists for each application
+        //have to cast into Appdelegate its the only one that has the Window property
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene, let delegate = windowScene.delegate as? SceneDelegate else {return}
+        
+        delegate.window?.rootViewController = loginViewController
+    }
+    
+    
+}
 }

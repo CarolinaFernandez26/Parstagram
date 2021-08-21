@@ -31,16 +31,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
         }
     }
-    @IBAction func onLogoutButton(_ sender: Any) {
-        //clearse Parse cache
-        PFUser.logOut()
-        let main = UIStoryboard(name: "Main", bundle: nil)
-        let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
-        //one object that exists for each application
-        //have to cast into Appdelegate its the only one that has the Window property
-        let delegate =  UIApplication.shared.delegate as! AppDelegate
-        delegate.window?.rootViewConroller = loginViewController
-    }
+    
+    
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
