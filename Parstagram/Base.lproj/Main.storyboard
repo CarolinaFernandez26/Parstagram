@@ -139,6 +139,47 @@
                                             <outlet property="usernameLabel" destination="QUI-5T-qqs" id="w1W-h1-Bwz"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="71" id="sYS-QS-sn5" customClass="CommentCell" customModule="Parstagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="509.5" width="392" height="71"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sYS-QS-sn5" id="fRj-aT-rbb">
+                                            <rect key="frame" x="0.0" y="0.0" width="392" height="71"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a comment" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5M-ja-sIj">
+                                                    <rect key="frame" x="66" y="8" width="138.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbI-Lb-iPP">
+                                                    <rect key="frame" x="9" y="8" width="42" height="20.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="42" id="fBL-0j-Pyu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="DbI-Lb-iPP" firstAttribute="top" secondItem="fRj-aT-rbb" secondAttribute="topMargin" constant="-3" id="2MX-FD-dT0"/>
+                                                <constraint firstItem="Z5M-ja-sIj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fRj-aT-rbb" secondAttribute="top" constant="8" id="32v-N5-awB"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="DbI-Lb-iPP" secondAttribute="bottom" constant="8" id="CLp-X8-yyZ"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Z5M-ja-sIj" secondAttribute="bottom" constant="8" id="TYK-uW-qjN"/>
+                                                <constraint firstItem="Z5M-ja-sIj" firstAttribute="leading" secondItem="DbI-Lb-iPP" secondAttribute="trailing" constant="8" id="cCB-3R-5HA"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z5M-ja-sIj" secondAttribute="trailing" constant="8" id="cJc-Gn-dAG"/>
+                                                <constraint firstItem="DbI-Lb-iPP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fRj-aT-rbb" secondAttribute="top" constant="8" id="gZK-Xq-tY1"/>
+                                                <constraint firstItem="DbI-Lb-iPP" firstAttribute="leading" secondItem="fRj-aT-rbb" secondAttribute="leading" constant="16" id="ho9-EU-GWh"/>
+                                                <constraint firstItem="Z5M-ja-sIj" firstAttribute="leading" secondItem="DbI-Lb-iPP" secondAttribute="trailing" constant="8" id="jHn-Qv-kGf"/>
+                                                <constraint firstItem="DbI-Lb-iPP" firstAttribute="baseline" secondItem="Z5M-ja-sIj" secondAttribute="baseline" id="t6p-SB-vQ7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentLabel" destination="Z5M-ja-sIj" id="rd9-Cc-WXg"/>
+                                            <outlet property="nameLabel" destination="DbI-Lb-iPP" id="09R-gO-Bqe"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

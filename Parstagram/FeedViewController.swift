@@ -41,25 +41,43 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        let post = posts[section]
+        //[] means whatever is on the left if it is nil, set it to default value ??
+        let comments = (post["comments"]as? [PFObject]) ?? []
+        
+        return comments.count + 1
+    }
+    
+    func numberOfSections ( in tableView: UITableView) -> Int {
         return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = TableView.dequeueReusableCell(withIdentifier: "PostCellTableViewCell" ) as! PostCellTableViewCell
-        let post = posts[indexPath.row]
-        let user = post ["author"] as! PFUser
-        cell.usernameLabel.text = user.username
+        let post = posts[indexPath.section]
+        let comments = (post["comments"] as? [PFObject]) ?? []
         
-        cell.captionLabel.text = post ["caption"] as! String
- 
-        let imageFile = post["image"] as! PFFileObject
-        let urlString = imageFile.url!
-        let url = URL (string: urlString)!
-        
-        cell.photoView.af_setImage(withURL: url)
-        
-        return cell
+        if indexPath.row == 0 {
+            let cell = TableView.dequeueReusableCell(withIdentifier: "PostCellTableViewCell" ) as! PostCellTableViewCell
+            let user = post ["author"] as! PFUser
+            cell.usernameLabel.text = user.username
+            
+            cell.captionLabel.text = post ["caption"] as! String
+     
+            let imageFile = post["image"] as! PFFileObject
+            let urlString = imageFile.url!
+            let url = URL (string: urlString)!
+            
+            cell.photoView.af_setImage(withURL: url)
+            
+            return cell
+        } else {
+            let cell = TableView.dequeueReusableCell(withIdentifier: "CommentCell" )!
+            
+            return cell
+        }
+      
     }
     
     
