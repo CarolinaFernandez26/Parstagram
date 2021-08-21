@@ -212,7 +212,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="ZMT-3r-O0t">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="onLogoutButton:" destination="sYd-Kj-NRQ" id="bIq-Qi-Oxa"/>
+                                <action selector="onLogoutButton:" destination="sYd-Kj-NRQ" id="HSG-j0-SJ4"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" image="insta_camera_btn" id="KL5-p6-nEg">
