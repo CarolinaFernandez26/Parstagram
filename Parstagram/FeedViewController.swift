@@ -8,21 +8,31 @@
 import UIKit
 import Parse
 import AlamofireImage
+import MessageInputBar
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
    
     var posts = [PFObject]()
     
-
+    let commentBar = MessageInputBar()
+    var showsCommentBar = false
     @IBOutlet weak var TableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         TableView.delegate = self
         TableView.dataSource = self
+        TableView.keyboardDismissMode = .interactive
         
         // Do any additional setup after loading the view.
     }
+    
+    override var inputAccessoryView: UIView?{ return commentBar}
+    
+    override var canBecomeFirstResponder: Bool{
+        return showsCommentBar
+    }
+    
     
     override func viewDidAppear( _ animated: Bool)
     {
@@ -46,7 +56,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         //[] means whatever is on the left if it is nil, set it to default value ??
         let comments = (post["comments"]as? [PFObject]) ?? []
         
-        return comments.count + 1
+        return comments.count + 2
     }
     
     func numberOfSections ( in tableView: UITableView) -> Int {
@@ -72,12 +82,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.photoView.af_setImage(withURL: url)
             
             return cell
-        } else {
-            let cell = TableView.dequeueReusableCell(withIdentifier: "CommentCell" )!
+        } else if indexPath.row <= comments.count{
+            let cell = TableView.dequeueReusableCell(withIdentifier: "CommentCell" ) as! CommentCell
             
             return cell
         }
-      
+        else {
+            let cell = TableView.dequeueReusableCell(withIdentifier:    "AddCommentCell")!
+            return cell
+        }
     }
     
     
